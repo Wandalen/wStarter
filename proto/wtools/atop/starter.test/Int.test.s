@@ -100,7 +100,7 @@ function assetFor( test, name )
     o.locals = o.locals || locals;
     _.props.supplement( o.locals, locals );
     let r = oprogram.body.call( a, o );
-    r.programPath = a.path.nativize( r.programPath );
+    r.filePath/*programPath*/ = a.path.nativize( r.filePath/*programPath*/ );
     return r;
   }
 }
@@ -171,7 +171,7 @@ function sourcesJoinFilesCheckRoutines( test )
 {
   let context = this;
   let a = context.assetFor( test, 'several' );
-  let programPath = a.program( checkRoutines ).programPath;
+  let filePath/*programPath*/ = a.program( checkRoutines ).filePath/*programPath*/;
 
   /* */
 
@@ -195,7 +195,7 @@ function sourcesJoinFilesCheckRoutines( test )
     return null;
   });
 
-  a.shell( `node ${ programPath }` );
+  a.shell( `node ${ filePath/*programPath*/ }` );
   a.ready.then( ( op ) =>
   {
     test.identical( op.exitCode, 0 );
@@ -1153,7 +1153,7 @@ function browserUserTempDirCleanup( test )
     }
   }
 
-  let execPath = a.program({ entry : program, locals }).programPath;
+  let execPath = a.program({ entry : program, locals }).filePath/*programPath*/;
 
   let op = { execPath };
   let ready = _.Consequence();

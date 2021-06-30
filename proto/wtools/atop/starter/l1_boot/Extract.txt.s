@@ -25,8 +25,8 @@ function _Begin()
 
   // let _errorCounter = 0;
   // let _errorMaking = false;
-  const _ArrayIndexOf = Array.prototype.indexOf;
-  const _ArrayIncludes = Array.prototype.includes;
+  let _ArrayIndexOf = Array.prototype.indexOf;
+  let _ArrayIncludes = Array.prototype.includes;
   if( !_ArrayIncludes )
   _ArrayIncludes = function( e ){ _ArrayIndexOf.call( this, e ) }
 

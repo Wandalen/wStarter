@@ -1,7 +1,7 @@
 
 if( typeof module !== 'undefined' )
 {
-  require( 'wstarter' );
+  require( '..' );
 }
 
 let _ = _global_.wTools;
@@ -20,9 +20,10 @@ var o =
 }
 
 o.inPath =
-{
-  filePath : _.path.join( __dirname, '../node_modules/wTools/**.(s|ss)' )
-}
+[
+  _.path.join( __dirname, '../node_modules/wTools/**.(s|ss)' ),
+  _.path.join( __dirname, '../node_modules/wTools/proto/node_modules/*' ),
+]
 
 console.log( `Joining files for njs interpreter` );
 console.log( `sourcesJoinFiles options:\n${_.entity.exportJs( o )}` )
@@ -41,9 +42,10 @@ var o =
 }
 
 o.inPath =
-{
-  filePath : _.path.join( __dirname, '../node_modules/wTools/**.(s|ss)' )
-}
+[
+  _.path.join( __dirname, '../node_modules/wTools/**.(s|ss)' ),
+  _.path.join( __dirname, '../node_modules/wTools/proto/node_modules/*' ),
+]
 
 console.log( `Joining files for browser` );
 console.log( `sourcesJoinFiles options:\n${_.entity.exportJs( o )}` )

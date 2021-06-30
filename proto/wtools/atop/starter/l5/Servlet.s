@@ -285,7 +285,7 @@ function requestPostHandler( o )
 
 function requestErrorHandler( o )
 {
-  debugger;
+  // debugger;
   if( o.response.headersSent )
   return o.next( o.error );
   o.error = _.err( o.error );
@@ -343,7 +343,7 @@ function htmlForHtml( o )
   o2.withScripts = servlet.withScripts;
   o2.withStarter = servlet.withStarter;
 
-  debugger;
+  // debugger;
   let html = system.maker.htmlForFiles( o2 );
 
   if( o.response )
@@ -430,9 +430,9 @@ function jsSingleForJs( o )
     _.assert( _.strDefined( o2.inPath ) );
     _.assert( _.strDefined( o2.basePath ) );
 
-    debugger;
+    // debugger;
     let data = system.maker.sourcesJoinFiles( o2 );
-    debugger;
+    // debugger;
 
     if( o.response )
     {
@@ -693,7 +693,7 @@ function remoteResolve( o )
     if( !servlet.resolvingNpm )
     {
       let err = _.err( `Cant resolve npm modules. Field {- servlet.resolvingNpm -} is disabled.` );
-      debugger;
+      // debugger;
       throw err;
     }
 

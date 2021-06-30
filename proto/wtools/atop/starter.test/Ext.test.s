@@ -121,7 +121,6 @@ function sourcesJoin( test )
   .then( ( op ) =>
   {
     test.identical( op.exitCode, 0 );
-    debugger;
     var output =
     `
     File1.js:0
@@ -1956,7 +1955,16 @@ function sourcesJoinRoutineInclude( test )
   })
 
   a.fork({ execPath : context.willbeExecPath, args : '.build', currentPath : a.abs( 'in' ) })
-  a.appStart( `.sources.join basePath:in inPath:[**/*.(js|s),build/node_modules/*] outPath:../out/Out.js entryPath:Index.js interpreter:njs` )
+  var execPath =
+  [
+    '.sources.join',
+    'basePath:in',
+    'inPath:[**/*.(js|s),build/node_modules/*]',
+    'outPath:../out/Out.js',
+    'entryPath:Index.js',
+    'interpreter:njs',
+  ].join( ' ' );
+  a.appStart( execPath )
 
   .then( ( op ) =>
   {
@@ -1964,7 +1972,6 @@ function sourcesJoinRoutineInclude( test )
     test.identical( _.strCount( op.output, '+ sourcesJoin to' ), 1 );
     var expected = [ '.', './Out.js' ];
     var files = a.find( a.abs( 'out' ) );
-    debugger
     test.identical( files, expected );
     return op;
   })

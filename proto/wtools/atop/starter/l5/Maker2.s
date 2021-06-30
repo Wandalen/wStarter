@@ -77,7 +77,7 @@ function sourcesJoinFiles( o )
 
     if( !_.longHasAll( o.inPath, o.entryPath ) )
     {
-      debugger;
+      // debugger;
       throw _.errBrief
       (
         'List of source files should have all entry files'

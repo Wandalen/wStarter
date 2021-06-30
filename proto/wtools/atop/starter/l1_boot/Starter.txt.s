@@ -88,7 +88,7 @@ function _Begin()
 
     starter.sourcesMap[ o.filePath ] = sourceFile;
     if( sourceFile.isModuleDeclareFile )
-    starter.moduleMainFilesMap[ starter.path.name( o.filePath ) ] = sourceFile;
+    starter.moduleMainFilesMap[ starter.path.fullName( o.filePath ) ] = sourceFile;
     // Object.preventExtensions( sourceFile );
     return sourceFile;
 
@@ -127,7 +127,7 @@ function _Begin()
     return _starter_._sourceInclude( parent, parent.dirPath, request );
   }
 
-  SourceFile._resolveFilename = function _resolveFilename( request, parent, isMain, options )
+  SourceFile._resolveFilename = function _resolveFilename( request, parent/*, isMain, options*/ )
   {
     return _starter_._sourceResolveAct( parent, parent.dirPath, request );
   }

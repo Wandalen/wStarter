@@ -31,6 +31,9 @@ function _Begin()
   {
     _process.exitCode = exitCode;
 
+    if( !_starter_.withServer )
+    return;
+
     let body = { routine : 'exit', arguments : [ _process._exitCode ] };
     let op =
     {
@@ -54,6 +57,9 @@ function _Begin()
   {
     _.assert( _.numberIs( code ) );
     _process._exitCode = code;
+
+    if( !_starter_.withServer )
+    return;
 
     let op =
     {

@@ -76,12 +76,12 @@ function form()
   return center.remote.form()
   .then( ( arg ) =>
   {
-    debugger;
+    // debugger;
     return center.remote.workerOpen();
   })
   .then( ( slave ) =>
   {
-    debugger;
+    // debugger;
     center._slave = slave;
     return center._slave.execImmediate();
   });

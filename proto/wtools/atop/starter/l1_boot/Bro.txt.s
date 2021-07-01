@@ -348,17 +348,25 @@ function _Begin()
     if( _.arrayIs( resolvedFilePath ) )
     return resolvedFilePath;
 
-    let result = this._broFileRead
-    ({
-      filePath : resolvedFilePath + '?stat=1',
-      encoding : 'json',
-    });
-    result = JSON.parse( result );
+    if( _starter_.withServer )
+    {
+      let result = this._broFileRead
+      ({
+        filePath : resolvedFilePath + '?stat=1',
+        encoding : 'json',
+      });
+      result = JSON.parse( result );
 
-    if( !result.exists )
+      if( result.exists )
+      return resolvedFilePath;
+    }
+    else
+    {
+      if( _starter_.sourcesMap[ resolvedFilePath ] )
+      return resolvedFilePath;
+    }
+
     throw _.err( `Failed to resolve path: "${filePath}, file doesn't exist.` );
-
-    return resolvedFilePath;
   }
 
   //
@@ -413,7 +421,7 @@ function _Begin()
     catch( err )
     {
       end();
-      debugger;
+      // debugger;
       throw _.err( err );
     }
 
@@ -473,19 +481,19 @@ function _Begin()
       let scriptCode = document.createTextNode( read );
       script.appendChild( scriptCode );
 
-      if( resolvedFilePath === '/wtools/atop/testing/l7/TesterTop.s' )
-      debugger;
+      // if( resolvedFilePath === '/wtools/atop/testing/l7/TesterTop.s' )
+      // debugger;
 
       document.head.appendChild( script );
 
-      if( resolvedFilePath === '/wtools/atop/testing/l7/TesterTop.s' )
-      debugger;
+      // if( resolvedFilePath === '/wtools/atop/testing/l7/TesterTop.s' )
+      // debugger;
 
       let childSource = starter._sourceForPathGet( resolvedFilePath );
       let result = starter._sourceIncludeResolvedCalling( parentSource, childSource, resolvedFilePath );
 
-      if( resolvedFilePath === '/wtools/atop/testing/l7/TesterTop.s' )
-      debugger;
+      // if( resolvedFilePath === '/wtools/atop/testing/l7/TesterTop.s' )
+      // debugger;
 
       return result;
     }

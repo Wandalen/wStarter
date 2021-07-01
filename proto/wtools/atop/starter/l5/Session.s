@@ -554,7 +554,7 @@ function timerCancel()
 
   if( session._timeOutTimer )
   {
-    debugger;
+    // debugger;
     _.time.cancel( session._timeOutTimer );
     session._timeOutTimer = null;
   }

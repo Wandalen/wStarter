@@ -23,7 +23,7 @@ function _unform()
   let system = session.system;
   let ready = new _.Consequence().take( null );
 
-  debugger;
+  // debugger;
   if( session._process )
   {
 
@@ -85,7 +85,7 @@ function _form()
 
     session._process.conTerminate.finally( ( err, arg ) =>
     {
-      debugger;
+      // debugger;
 
       // console.log( 'session._process.conTerminate' );
 

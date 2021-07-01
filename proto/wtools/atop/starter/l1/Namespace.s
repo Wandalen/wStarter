@@ -114,7 +114,7 @@ function pathRealToVirtual( o )
   {
     if( !o.realToVirtualMap )
     {
-      debugger;
+      // debugger;
       throw _.err( `Cant convet real path "${o.realPath}" to virtual path` );
     }
     for( let basePath in o.realToVirtualMap )

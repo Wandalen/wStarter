@@ -127,7 +127,6 @@ function sourcesJoinFiles( test )
     ready,
   });
 
-  debugger;
   starter.sourcesJoinFiles
   ({
     inPath : '**',
@@ -140,7 +139,6 @@ function sourcesJoinFiles( test )
 
   let read = _.fileProvider.fileRead( outputPath );
   test.identical( _.strCount( read, 'setTimeout( f, 1000 );' ), 2 );
-  debugger;
 
   js( _.path.nativize( outputPath ) )
   .then( ( op ) =>
@@ -241,6 +239,163 @@ function sourcesJoinFilesCheckRoutines( test )
     console.log( `_.uri.refine : ${ _starter_.uri.refine( '/c/abc' ) }` );
     console.log( `_.uri.parseConsecutive : ${ _starter_.uri.parseConsecutive( '/c/abc' ).longPath }` );
     console.log( `_.uri.canonizeTolerant : ${ _starter_.uri.canonizeTolerant( '/c/abc' ) }` );
+  }
+}
+
+//
+
+async function singleFileServerLessBuild( test )
+{
+  let context = this;
+  let a = context.assetFor( test, 'singleFileBuild' );
+  let outputPath = a.abs( 'out/Index.js' );
+  let starter = new _.starter.System().form();
+  var page, window;
+
+  a.reflect();
+
+  await a.will({ args : '.build' })
+
+  starter.sourcesJoinFiles
+  ({
+    inPath : [ 'build/**.(s|ss|js)', 'build/node_modules/*' ],
+    entryPath : 'build/Entry.js',
+    outPath : 'out/Out.js',
+    basePath : a.abs( '.' ),
+    interpreter : 'browser',
+    withServer : 0,
+  })
+  test.true( _.fileProvider.fileExists( a.abs( 'out/Out.js' ) ) );
+
+  try
+  {
+    window = await _.puppet.windowOpen({ headless : true });
+    page = await window.pageOpen();
+
+    await page.goto( `file://${a.fileProvider.path.nativize( a.abs( 'Index.html' ) )}` );
+
+    /* */
+
+    test.case = 'starter.withServer is false'
+    var got = await page.eval( () =>
+    {
+      return _starter_.withServer;
+    });
+    test.identical( got, 0 );
+
+    /* */
+
+    test.case = 'try to include unknown path'
+    var got = await page.eval( () =>
+    {
+      try
+      {
+        require( '/unknown' );
+        return false;
+      }
+      catch( err )
+      {
+        return true;
+      }
+    });
+    test.identical( got, true );
+
+    /* */
+
+    test.case = 'try to include module using it name'
+    var got = await page.eval( () =>
+    {
+      try
+      {
+        require( 'wTools' );
+        return wTools.map.is( wTools );
+      }
+      catch( err )
+      {
+        return false;
+      }
+    })
+    test.identical( got, true );
+
+    /* */
+
+    test.case = 'try to include module using path'
+    var got = await page.eval( () =>
+    {
+      try
+      {
+        require( '/build/wtools/abase/l2/PathBasic.s' );
+        return wTools.path.join( '/a', 'b' );
+      }
+      catch( err )
+      {
+        return false;
+      }
+    })
+    test.identical( got, '/a/b' );
+
+    /* */
+
+    test.case = 'try to include module via include'
+    var got = await page.eval( () =>
+    {
+      try
+      {
+        const _ = require( 'wTools' );
+        _.include( 'wPathBasic' );
+        return _.path.join( '/a', 'b' );
+      }
+      catch( err )
+      {
+        return false;
+      }
+    })
+    test.identical( got, '/a/b' );
+
+    /* */
+
+    test.case = 'try to include missing module via include'
+    var got = await page.eval( () =>
+    {
+      try
+      {
+        const _ = require( 'wTools' );
+        _.include( 'wFiles' );
+        return true;
+      }
+      catch( err )
+      {
+        return false;
+      }
+    })
+    test.identical( got, false );
+
+    /* */
+
+    test.case = 'process.exit sets exit code, but does not close the browser'
+    var got = await page.eval( () =>
+    {
+      try
+      {
+        process.exit( -1 );
+        return process.exitCode;
+      }
+      catch( err )
+      {
+        return false;
+      }
+    })
+    test.identical( got, -1 );
+    test.identical( page._handle.isClosed(), false );
+
+    /* */
+
+    await window.close();
+  }
+  catch( err )
+  {
+    test.exceptionReport({ err });
+    await window.close();
   }
 }
 
@@ -1355,6 +1510,7 @@ const Proto =
 
     sourcesJoinFiles,
     sourcesJoinFilesCheckRoutines,
+    singleFileServerLessBuild,
 
     // html for
 

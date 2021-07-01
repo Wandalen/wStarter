@@ -1,55 +1,60 @@
 {
-  "name" : "wstarter",
-  "version" : "0.4.264",
-  "description" : "Collection of tools to generate background service to start and pack application. Use the module to keep files structure of the application and make code aware wherein the file system is it executed.",
-  "author" : "Kostiantyn Wandalen <wanalen@01.school>",
-  "license" : "MIT",
-  "main" : "proto/node_modules/wstarter",
-  "files" : [ "proto/wtools/atop/starter", "proto/node_modules", "proto/node_modules/Tools", "proto/node_modules/wstarter" ],
-  "scripts" :
-  {
-    "test" : "wtest .run 'proto/**' rapidity:-3 verbosity:6 silencing:0",
-    "docgen" : "wdocgen proto",
-    "single-process-starter" : "node proto/wtools/atop/starter/entry/Exec",
-    "debug-starter" : "node proto/wtools/atop/starter/entry/ExecDebug",
-    "starter" : "node proto/wtools/atop/starter/entry/ExecUnrestricted"
+  "name": "wstarter",
+  "version": "0.4.265",
+  "description": "Collection of tools to generate background service to start and pack application. Use the module to keep files structure of the application and make code aware wherein the file system is it executed.",
+  "author": "Kostiantyn Wandalen <wanalen@01.school>",
+  "license": "MIT",
+  "main": "proto/node_modules/wstarter",
+  "files": [
+    "proto/wtools/atop/starter",
+    "proto/node_modules",
+    "proto/node_modules/Tools",
+    "proto/node_modules/wstarter"
+  ],
+  "scripts": {
+    "test": "wtest .run 'proto/**' rapidity:-3 verbosity:6 silencing:0",
+    "docgen": "wdocgen proto",
+    "single-process-starter": "node proto/wtools/atop/starter/entry/Exec",
+    "debug-starter": "node proto/wtools/atop/starter/entry/ExecDebug",
+    "starter": "node proto/wtools/atop/starter/entry/ExecUnrestricted"
   },
-  "bin" :
-  {
-    "starter" : "proto/wtools/atop/starter/entry/ExecUnrestricted",
-    "single-process-starter" : "proto/wtools/atop/starter/entry/Exec",
-    "debug-starter" : "proto/wtools/atop/starter/entry/ExecDebug"
+  "bin": {
+    "starter": "proto/wtools/atop/starter/entry/ExecUnrestricted",
+    "single-process-starter": "proto/wtools/atop/starter/entry/Exec",
+    "debug-starter": "proto/wtools/atop/starter/entry/ExecDebug"
   },
-  "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wStarter.git" },
-  "bugs" :
-  {
-    "url" : "https://github.com/Wandalen/wStarter/issues"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wandalen/wStarter.git"
   },
-  "dependencies" :
-  {
-    "chrome-launcher" : "0.13.2",
-    "express" : "4.17.1",
-    "body-parser" : "1.19.0",
-    "jsdom" : "16.4.0",
-    "pretty" : "2.0.0",
-    "chrome-remote-interface" : "0.28.1",
-    "portscanner" : "2.2.0",
-    "wTools" : "gamma",
-    "wCopyable" : "gamma",
-    "wFiles" : "gamma",
-    "wverbal" : "gamma",
-    "wtemplatetreeenvironment" : "gamma",
-    "wcommandsaggregator" : "gamma",
-    "wservlettools" : "gamma",
-    "wloggersocket" : "gamma"
+  "bugs": {
+    "url": "https://github.com/Wandalen/wStarter/issues"
   },
-  "devDependencies" :
-  {
-    "eslint" : "7.1.0",
-    "wTesting" : "gamma",
-    "willbe" : "gamma",
-    "wpuppet" : "gamma",
-    "wmodulefortesting1a" : "gamma"
+  "dependencies": {
+    "wverbal": "gamma",
+    "wTools": "gamma",
+    "wtemplatetreeenvironment": "gamma",
+    "wservlettools": "gamma",
+    "wloggersocket": "gamma",
+    "wFiles": "gamma",
+    "wCopyable": "gamma",
+    "wcommandsaggregator": "gamma",
+    "pretty": "2.0.0",
+    "portscanner": "2.2.0",
+    "jsdom": "16.4.0",
+    "express": "4.17.1",
+    "chrome-remote-interface": "0.28.1",
+    "chrome-launcher": "0.13.2",
+    "body-parser": "1.19.0"
   },
-  "keywords" : [ "wTools" ]
+  "devDependencies": {
+    "wTesting": "gamma",
+    "wpuppet": "gamma",
+    "wmodulefortesting1a": "gamma",
+    "willbe": "gamma",
+    "eslint": "7.1.0"
+  },
+  "keywords": [
+    "wTools"
+  ]
 }

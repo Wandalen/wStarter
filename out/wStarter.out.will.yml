@@ -386,6 +386,12 @@ module:
           - ../proto/wtools/atop/starter.test/_asset/several
           - ../proto/wtools/atop/starter.test/_asset/several/File1.js
           - ../proto/wtools/atop/starter.test/_asset/several/File2.js
+          - ../proto/wtools/atop/starter.test/_asset/singleFileBuild
+          - ../proto/wtools/atop/starter.test/_asset/singleFileBuild/.will.yml
+          - ../proto/wtools/atop/starter.test/_asset/singleFileBuild/Index.html
+          - ../proto/wtools/atop/starter.test/_asset/singleFileBuild/proto
+          - >-
+            ../proto/wtools/atop/starter.test/_asset/singleFileBuild/proto/Entry.js
           - >-
             ../proto/wtools/atop/starter.test/_asset/startBaseDeducingFromAllowed
           - >-

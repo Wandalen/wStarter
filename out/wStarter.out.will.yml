@@ -218,6 +218,11 @@ module:
           - ../proto/wtools/atop/starter.test/_asset
           - ../proto/wtools/atop/starter.test/_asset/asyncError
           - ../proto/wtools/atop/starter.test/_asset/asyncError/F1.js
+          - ../proto/wtools/atop/starter.test/_asset/combined
+          - ../proto/wtools/atop/starter.test/_asset/combined/External.s
+          - ../proto/wtools/atop/starter.test/_asset/combined/main
+          - ../proto/wtools/atop/starter.test/_asset/combined/main/File1.s
+          - ../proto/wtools/atop/starter.test/_asset/combined/main/File2.s
           - ../proto/wtools/atop/starter.test/_asset/complex
           - ../proto/wtools/atop/starter.test/_asset/complex/package.json
           - ../proto/wtools/atop/starter.test/_asset/complex/app0

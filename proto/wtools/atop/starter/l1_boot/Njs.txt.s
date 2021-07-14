@@ -63,7 +63,6 @@ function _Begin()
     let r = starter._sourceForPathGet( njsModule.filename );
     if( r )
     {
-      // debugger;
       starter._njsSourceFileUpdateFromNjs( r, njsModule );
       return r;
     }
@@ -121,12 +120,10 @@ function _Begin()
 
     if( parentSource )
     {
-      // debugger;
       _natResolve = parentSource._natResolve;
     }
     else
     {
-      // debugger;
       _natResolve = this._natResolve;
     }
 

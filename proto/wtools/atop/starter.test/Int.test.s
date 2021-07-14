@@ -109,6 +109,58 @@ function assetFor( test, name )
 // tests
 // --
 
+function sourcesJoinWithExternalBeforePath( test )
+{
+  let context = this;
+  let a = context.assetFor( test, 'combined' );
+  a.reflect();
+  let outPath = a.abs( 'out/Main.s' );
+
+  /* - */
+
+  a.ready.then( () =>
+  {
+    test.case = 'join files';
+    var sourcePath1 = a.abs( 'main/File1.s' );
+    var sourcePath2 = a.abs( 'main/File2.s' );
+    var starter = new _.starter.Maker();
+    // starter.form();
+    let filesMap = Object.create( null );
+    filesMap[ sourcePath1 ] = a.fileProvider.fileRead( sourcePath1 );
+    filesMap[ sourcePath2 ] = a.fileProvider.fileRead( sourcePath2 );
+
+    var o =
+    {
+      outPath,
+      entryPath : sourcePath1,
+      basePath  : a.abs( '.' ),
+      externalBeforePath : [ a.abs( 'External.s' ) ],
+      externalAfterPath : null,
+      filesMap,
+      removingShellPrologue : 1,
+      withServer : 0,
+    };
+    var got = starter.sourcesJoin( o );
+    test.true( _.str.is( got ) );
+    a.fileProvider.fileWrite( outPath, got );
+    return null;
+  });
+
+  a.shell( `node ${ a.path.nativize( outPath ) }` );
+  a.ready.then( ( op ) =>
+  {
+    test.identical( op.exitCode, 0 );
+    test.identical( _.strLinesCount( op.output ), 4 );
+    return null;
+  });
+
+  /* */
+
+  return a.ready;
+}
+
+//
+
 function sourcesJoinFiles( test )
 {
   let context = this;
@@ -1508,6 +1560,7 @@ const Proto =
 
     // sourcesJoinFiles
 
+    sourcesJoinWithExternalBeforePath,
     sourcesJoinFiles,
     sourcesJoinFilesCheckRoutines,
     singleFileServerLessBuild,

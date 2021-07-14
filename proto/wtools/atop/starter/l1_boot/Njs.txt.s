@@ -33,12 +33,13 @@ function _Begin()
     if( sourceFile.njsModule )
     return sourceFile.njsModule;
     let Module = _natInclude( 'module' );
-    let natPath = this.path.nativize( sourceFile.filePath );
-    let njsModule = Module._cache[ natPath ];
+    let normalizedPath = this.path.normalize( sourceFile.filePath );
+    // let natPath = this.path.nativize( sourceFile.filePath );
+    let njsModule = Module._cache[ normalizedPath ];
     if( !njsModule )
     {
-      njsModule = new Module( natPath, sourceFile.parent ? sourceFile.parent.njsModule : null );
-      Module._cache[ natPath ] = njsModule;
+      njsModule = new Module( normalizedPath, sourceFile.parent ? sourceFile.parent.njsModule : null );
+      Module._cache[ normalizedPath ] = njsModule;
     }
     njsModule.sourceFile = sourceFile;
     sourceFile.njsModule = njsModule;
@@ -62,7 +63,6 @@ function _Begin()
     let r = starter._sourceForPathGet( njsModule.filename );
     if( r )
     {
-      // debugger;
       starter._njsSourceFileUpdateFromNjs( r, njsModule );
       return r;
     }
@@ -120,12 +120,10 @@ function _Begin()
 
     if( parentSource )
     {
-      // debugger;
       _natResolve = parentSource._natResolve;
     }
     else
     {
-      // debugger;
       _natResolve = this._natResolve;
     }
 

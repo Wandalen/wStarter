@@ -1,6 +1,6 @@
 {
   "name": "wstarter",
-  "version": "0.4.273",
+  "version": "0.4.274",
   "description": "Collection of tools to generate background service to start and pack application. Use the module to keep files structure of the application and make code aware wherein the file system is it executed.",
   "author": "Kostiantyn Wandalen <wanalen@01.school>",
   "license": "MIT",
@@ -31,14 +31,14 @@
     "url": "https://github.com/Wandalen/wStarter/issues"
   },
   "dependencies": {
-    "wverbal": "latest",
-    "wTools": "latest",
-    "wtemplatetreeenvironment": "latest",
-    "wservlettools": "latest",
-    "wloggersocket": "latest",
-    "wFiles": "latest",
-    "wCopyable": "latest",
-    "wcommandsaggregator": "latest",
+    "wverbal": "alpha",
+    "wTools": "alpha",
+    "wtemplatetreeenvironment": "alpha",
+    "wservlettools": "alpha",
+    "wloggersocket": "alpha",
+    "wFiles": "alpha",
+    "wCopyable": "alpha",
+    "wcommandsaggregator": "alpha",
     "pretty": "2.0.0",
     "portscanner": "2.2.0",
     "jsdom": "16.4.0",
@@ -48,10 +48,10 @@
     "body-parser": "1.19.0"
   },
   "devDependencies": {
-    "wTesting": "latest",
-    "wpuppet": "latest",
-    "wmodulefortesting1a": "latest",
-    "willbe": "latest",
+    "wTesting": "alpha",
+    "wpuppet": "alpha",
+    "wmodulefortesting1a": "alpha",
+    "willbe": "alpha",
     "eslint": "7.1.0"
   },
   "keywords": [

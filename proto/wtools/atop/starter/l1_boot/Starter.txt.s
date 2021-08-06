@@ -86,9 +86,12 @@ function _Begin()
     console.log( ` . SourceFile ${o.filePath}` );
 
 
-    starter.sourcesMap[ o.filePath ] = sourceFile;
+    starter.sourcesMap[ _.path.nativize( o.filePath ) ] = sourceFile;
     if( sourceFile.isModuleDeclareFile )
     starter.moduleMainFilesMap[ starter.path.fullName( o.filePath ) ] = sourceFile;
+    // starter.sourcesMap[ o.filePath ] = sourceFile;
+    // if( sourceFile.isModuleDeclareFile )
+    // starter.moduleMainFilesMap[ starter.path.fullName( o.filePath ) ] = sourceFile;
     // Object.preventExtensions( sourceFile );
     return sourceFile;
 
@@ -333,7 +336,8 @@ function _Begin()
       return starter.moduleMainFilesMap[ filePathLower ].filePath;
     }
 
-    return filePath;
+    return _.path.nativize( filePath );
+    // return filePath;
   }
 
   //

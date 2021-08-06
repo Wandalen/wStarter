@@ -37,6 +37,7 @@ function _Begin()
   let setup = _starter_.setup = _starter_.setup || Object.create( null );
   let event = _starter_.event = _starter_.event || Object.create( null );
   let sourcesMap = _starter_.sourcesMap = _starter_.sourcesMap || Object.create( null );
+  let requireCache = _starter_.requireCache = _starter_.requireCache || Object.create( null );
   let moduleMainFilesMap = _starter_.moduleMainFilesMap = _starter_.moduleMainFilesMap || Object.create( null );
   let color = _starter_.color = _starter_.color || Object.create( null );
   let colorRgba = _starter_.color.rgba = _starter_.color.rgba || Object.create( null );

@@ -161,7 +161,7 @@ function _Begin()
       throw _._err({ args : [ `Found no source file ${sourcePath}` ], level : 4 });
 
       if( childSource.state === 'errored' || childSource.state === 'opening' || childSource.state === 'opened' )
-      return childSource.exports;
+      return end();
 
       childSource.parent = parentSource || null;
 
@@ -184,7 +184,15 @@ function _Begin()
       throw err;
     }
 
-    return childSource.exports;
+    return end();
+
+    function end()
+    {
+      if( !starter.requireCache[ childSource.filePath ] )
+      starter.requireCache[ childSource.filePath ] = childSource;
+  
+      return childSource.exports;
+    }
   }
 
   //
@@ -219,7 +227,15 @@ function _Begin()
       }
       else
       {
-        let childSource = starter._sourceForInclude.apply( starter, arguments );
+        let resolvedFilePath = this._pathResolveLocal( parentSource, basePath, filePath );
+        let chachedSource = this.requireCache[ resolvedFilePath ];
+        if( chachedSource )
+        {
+          _.assert( chachedSource.state === 'errored' || chachedSource.state === 'opening' || chachedSource.state === 'opened' )
+          return chachedSource.exports;
+        }
+        // let childSource = starter._sourceForInclude.apply( starter, arguments );
+        let childSource = this.sourcesMap[ resolvedFilePath ];
         if( childSource )
         return starter._sourceIncludeResolvedCalling( parentSource, childSource, filePath );
       }

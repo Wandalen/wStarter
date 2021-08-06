@@ -343,6 +343,7 @@ function _Begin()
 
     let resolvedFilePath = this._pathResolveLocal( parentSource, basePath, filePath );
     // resolvedFilePath = this._broPathResolveRemote( resolvedFilePath );
+    if( _starter_.withServer )
     resolvedFilePath = this._broPathResolveRemoteWithModule( parentSource, resolvedFilePath );
 
     if( _.arrayIs( resolvedFilePath ) )
@@ -553,17 +554,17 @@ function _Begin()
 
     function cacheGet()
     {
-      return _starter_.sourcesMap;
+      return _starter_.requireCache;
     }
 
     function cacheSet( src )
     {
-      _starter_.sourcesMap = src;
+      _starter_.requireCache = src;
 
-      if( !_starter_.sourcesMap[ 'module' ] )
+      if( !_starter_.requireCache[ 'module' ] )
       _starter_._sourceMake( 'module', '/', _sourceCodeModule );
 
-      return _starter_.sourcesMap;
+      return _starter_.requireCache;
     }
 
     function accesor( propName, onGet, onSet )

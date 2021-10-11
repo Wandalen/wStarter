@@ -193,7 +193,7 @@ function _Begin()
     {
       if( !starter.requireCache[ childSource.filePath ] )
       starter.requireCache[ childSource.filePath ] = childSource;
-  
+
       return childSource.exports;
     }
   }

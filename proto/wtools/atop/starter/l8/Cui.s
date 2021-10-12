@@ -143,7 +143,8 @@ function commandVersion( e )
   return _.npm.versionLog
   ({
     localPath : _.path.join( __dirname, '../../../../..' ),
-    remotePath : 'wstarter!alpha',
+    remotePath : 'wstarter',
+    tags : [ 'alpha' ],
   });
 }
 

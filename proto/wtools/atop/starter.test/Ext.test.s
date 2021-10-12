@@ -4257,7 +4257,7 @@ function version( test )
   {
     test.identical( op.exitCode, 0 );
     test.true( _.strHas( op.output, /Current version : .*\..*\..*/ ) );
-    test.true( _.strHas( op.output, /Latest version of wstarter!alpha : .*\..*\..*/ ) );
+    test.true( _.strHas( op.output, /alpha version of wstarter : .*\..*\..*/ ) );
     return op;
   })
 

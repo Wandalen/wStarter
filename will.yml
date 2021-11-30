@@ -22,7 +22,7 @@ about:
     - chrome >= 60.0.0
     - firefox >= 60.0.0
   npm.scripts:
-    test: wtest .run proto/**
+    test: wtest .run 'proto/**' rapidity:-3 verbosity:6 silencing:0
     docgen: wdocgen .build proto
     single-process-starter: node proto/wtools/atop/starter/entry/Exec
     debug-starter: node proto/wtools/atop/starter/entry/ExecDebug
@@ -289,8 +289,8 @@ step:
       content: prime
       debug: release
 submodule:
-  wTools:
-    path: 'npm:///wTools'
+  wcommandsaggregator:
+    path: 'npm:///wcommandsaggregator'
     enabled: 0
   wCopyable:
     path: 'npm:///wCopyable'
@@ -298,48 +298,49 @@ submodule:
   wFiles:
     path: 'npm:///wFiles'
     enabled: 0
-  wverbal:
-    path: 'npm:///wverbal'
-    enabled: 0
-  wtemplatetreeenvironment:
-    path: 'npm:///wtemplatetreeenvironment'
+  wloggersocket:
+    path: 'npm:///wloggersocket'
     enabled: 0
   wservlettools:
     path: 'npm:///wservlettools'
     enabled: 0
-  wloggersocket:
-    path: 'npm:///wloggersocket'
+  wtemplatetreeenvironment:
+    path: 'npm:///wtemplatetreeenvironment'
+    enabled: 0
+  wTools:
+    path: 'npm:///wTools'
+    enabled: 0
+  wverbal:
+    path: 'npm:///wverbal'
+    enabled: 0
+  body-parser:
+    path: 'npm:///body-parser!1.19.0'
     enabled: 0
   chrome-launcher:
-    path: 'npm:///chrome-launcher#0.13.2'
+    path: 'npm:///chrome-launcher!0.13.2'
     enabled: 0
   chrome-remote-interface:
-    path: 'npm:///chrome-remote-interface#0.28.1'
+    path: 'npm:///chrome-remote-interface!0.28.1'
     enabled: 0
   express:
-    path: 'npm:///express#4.17.1'
+    path: 'npm:///express!4.17.1'
     enabled: 0
   jsdom:
-    path: 'npm:///jsdom#16.4.0'
-    enabled: 0
-  pretty:
-    path: 'npm:///pretty#2.0.0'
+    path: 'npm:///jsdom!16.6.0'
     enabled: 0
   portscanner:
-    path: 'npm:///portscanner#2.2.0'
+    path: 'npm:///portscanner!2.2.0'
     enabled: 0
-  wstarter:
-    path: 'hd://.'
+  pretty:
+    path: 'npm:///pretty!2.0.0'
     enabled: 0
-    criterion:
-      development: 1
-  wTesting:
-    path: 'npm:///wTesting'
-    enabled: 0
-    criterion:
-      development: 1
   willbe:
     path: 'npm:///willbe'
+    enabled: 0
+    criterion:
+      development: 1
+  wmodulefortesting1a:
+    path: 'npm:///wmodulefortesting1a'
     enabled: 0
     criterion:
       development: 1
@@ -348,8 +349,8 @@ submodule:
     enabled: 0
     criterion:
       development: 1
-  wmodulefortesting1a:
-    path: 'npm:///wmodulefortesting1a'
+  wTesting:
+    path: 'npm:///wTesting'
     enabled: 0
     criterion:
       development: 1

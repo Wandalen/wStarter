@@ -12,11 +12,11 @@ about:
     starter: proto/wtools/atop/starter/entry/ExecUnrestricted
     single-process-starter: proto/wtools/atop/starter/entry/Exec
     debug-starter: proto/wtools/atop/starter/entry/ExecDebug
-  author: Kostiantyn Wandalen <wanalen@01.school>
+  author: Kostiantyn Wandalen <wandalen@obox.systems>
   keywords:
     - wTools
   contributors:
-    - Kostiantyn Wandalen <wanalen@01.school>
+    - Kostiantyn Wandalen <wandalen@obox.systems>
   interpreters:
     - njs >= 10.0.0
     - chrome >= 60.0.0

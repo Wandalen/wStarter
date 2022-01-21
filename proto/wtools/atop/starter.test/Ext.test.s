@@ -295,16 +295,14 @@ app0/File2.js:end
 app0/File1.js:timeout numberIs:true
 app0/File1.js:timeout numberIs:true
 app0/File1.js:timeout numberIs:true
-`
+`;
 
   /* */
 
   a.ready.then( () =>
   {
     test.case = 'default';
-    _.fileProvider.filesDelete( a.routinePath );
     a.reflect();
-    _.fileProvider.filesDelete( a.routinePath + '/out' );
     return null;
   })
 
@@ -317,7 +315,22 @@ app0/File1.js:timeout numberIs:true
     test.identical( _.strCount( op.output, /\+ sourcesJoin to .*sourcesJoinDep\/out\/app0/ ), 1 );
 
     var files = a.find( a.routinePath );
-    test.identical( files, [ '.', './app0', './app0/File1.js', './app0/File2.js', './app2', './app2/File1.js', './app2/File2.js', './ext', './ext/RequireApp2File2.js', './out', './out/app0', './out/app2' ] );
+    var exp =
+    [
+      '.',
+      './app0',
+      './app0/File1.js',
+      './app0/File2.js',
+      './app2',
+      './app2/File1.js',
+      './app2/File2.js',
+      './ext',
+      './ext/RequireApp2File2.js',
+      './out',
+      './out/app0',
+      './out/app2'
+    ];
+    test.identical( files, exp );
 
     return op;
   })

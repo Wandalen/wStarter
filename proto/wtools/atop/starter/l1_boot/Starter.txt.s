@@ -305,14 +305,10 @@ function _Begin()
     let starter = this;
 
     if( sourceFile && !basePath )
-    {
-      basePath = sourceFile.dirPath;
-    }
+    basePath = sourceFile.dirPath;
 
     if( !basePath && !sourceFile )
-    {
-      throw _.err( 'Base path is not specified, neither script file' );
-    }
+    throw _.err( 'Base path is not specified, neither script file' );
 
     let isAbsolute = filePath[ 0 ] === '/';
     let isDotted = _.strBegins( filePath, './' ) || _.strBegins( filePath, '../' ) || filePath === '.' || filePath === '..';
@@ -330,14 +326,18 @@ function _Begin()
     if( !isDotted && !isAbsolute )
     {
       if( starter.moduleMainFilesMap[ filePath ] )
-      return starter.moduleMainFilesMap[ filePath ].filePath;
-      let filePathLower = filePath.toLowerCase();
-      if( starter.moduleMainFilesMap[ filePathLower ] )
-      return starter.moduleMainFilesMap[ filePathLower ].filePath;
+      {
+        filePath = starter.moduleMainFilesMap[ filePath ].filePath;
+      }
+      else
+      {
+        let filePathLower = filePath.toLowerCase();
+        if( starter.moduleMainFilesMap[ filePathLower ] )
+        filePath = starter.moduleMainFilesMap[ filePathLower ].filePath;
+      }
     }
 
     return _.path.nativize( filePath );
-    // return filePath;
   }
 
   //

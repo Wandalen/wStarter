@@ -5,7 +5,7 @@ about:
     application. Use the module to keep files structure of the application and
     make code aware wherein the file system is it executed.
   version: 0.5.0
-  enabled: 1
+  enabled: 0
   license: MIT
   npm.name: wstarter
   npm.bin:

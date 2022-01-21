@@ -217,6 +217,71 @@ function sourcesJoinFiles( test )
 
 //
 
+function sourcesJoinFilesWithModule( test )
+{
+  const context = this;
+  const a = context.assetFor( test, 'module' );
+  a.reflect();
+
+  /* */
+
+  const starter = new _.starter.System().form();
+  const options = Object.create( null );
+  options.outPath = a.abs( 'out/Compiled.s' );
+  options.basePath = a.abs( '.' );
+  options.entryPath = a.abs( 'node_modules/wConsequence/proto/wtools/abase/l9/consequence/Namespace.s' );
+  options.inPath =
+  {
+    filePath :
+    [
+      a.abs( 'node_modules/wConsequence/proto/wtools/abase/l9/consequence/Namespace.s' ),
+      a.abs( 'node_modules/wConsequence/proto/node_modules/*' ),
+      a.abs( 'node_modules/wConsequence/proto/**/*.(s|ss)' ),
+      a.abs( `node_modules/wTools/proto/**/*.(s|ss)` ),
+      a.abs( `node_modules/wTools/proto/node_modules/*` ),
+      a.abs( `node_modules/wProto/proto/**/*.(s|ss)` ),
+      a.abs( `node_modules/wProto/proto/node_modules/*` ),
+      a.abs( `node_modules/wblueprint/proto/**/*.(s|ss)` ),
+      a.abs( `node_modules/wblueprint/proto/node_modules/*` ),
+    ],
+    maskDirectory : { excludeAny : /test$/, includeAny : 'testing' },
+    maskTransientDirectory : { excludeAny : /test$/, includeAny : 'testing' },
+  };
+
+  a.shell( 'npm i' );
+  a.ready.then( ( op ) =>
+  {
+    test.identical( op.exitCode, 0 );
+    starter.sourcesJoinFiles( options );
+    var files = a.fileProvider.dirRead( a.abs( '.' ) );
+    test.identical( files, [ 'node_modules', 'out', 'package-lock.json', 'package.json', 'Sample.s' ] );
+    var files = a.fileProvider.dirRead( a.abs( 'out' ) );
+    test.identical( files, [ 'Compiled.s' ] );
+    return null
+  });
+
+  /* */
+
+  a.ready.then( () =>
+  {
+    debugger;
+    return null
+  })
+  a.shell( 'node Sample.s');
+  a.ready.then( ( op ) =>
+  {
+    test.identical( op.exitCode, 0 );
+    test.identical( op.output, 'Succefully included compiled file.\n' );
+    return null
+  });
+
+  /* - */
+
+  return a.ready;
+}
+
+//
+
 function sourcesJoinFilesCheckRoutines( test )
 {
   let context = this;
@@ -1562,6 +1627,7 @@ const Proto =
 
     sourcesJoinWithExternalBeforePath,
     sourcesJoinFiles,
+    sourcesJoinFilesWithModule,
     sourcesJoinFilesCheckRoutines,
     singleFileServerLessBuild,
 

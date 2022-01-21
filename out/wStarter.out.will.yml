@@ -3,7 +3,7 @@ root:
   - wStarter.out
 consistency:
   ../will.yml: &ref_0
-    hash: ec12c9f8471b6ae43e4432215c5a23a0
+    hash: 28169dcc02f93fa1cfe1e5da6abf2856
     size: 8044
 module:
   wStarter.out:
@@ -14,7 +14,7 @@ module:
         Collection of tools to generate background service to start and pack
         application. Use the module to keep files structure of the application
         and make code aware wherein the file system is it executed.
-      enabled: 1
+      enabled: 0
       version: 0.5.0
       license: MIT
       npm.name: wstarter
@@ -380,6 +380,9 @@ module:
           - ../proto/wtools/atop/starter.test/_asset/legacy-trivial/.will.yml
           - ../proto/wtools/atop/starter.test/_asset/minute
           - ../proto/wtools/atop/starter.test/_asset/minute/F1.js
+          - ../proto/wtools/atop/starter.test/_asset/module
+          - ../proto/wtools/atop/starter.test/_asset/module/package.json
+          - ../proto/wtools/atop/starter.test/_asset/module/Sample.s
           - ../proto/wtools/atop/starter.test/_asset/processes
           - ../proto/wtools/atop/starter.test/_asset/processes/Experiment.js
           - ../proto/wtools/atop/starter.test/_asset/processes/Experiment2.js
@@ -1175,7 +1178,7 @@ module:
         Collection of tools to generate background service to start and pack
         application. Use the module to keep files structure of the application
         and make code aware wherein the file system is it executed.
-      enabled: 1
+      enabled: 0
       version: 0.5.0
       license: MIT
       npm.name: wstarter
@@ -1908,5 +1911,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: ec12c9f8471b6ae43e4432215c5a23a0
+        hash: 28169dcc02f93fa1cfe1e5da6abf2856
         size: 8044
